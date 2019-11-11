@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <title>REVERSI</title>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-sm bg-light navbar-light shadow-lg">
+        <!-- Navbar-brand -->
+        <span id="logo-text"><img id="logo" src="assets/LogoMakr_2t4XaO.png" alt="logo" height="50"
+                width="50">Reversi</span>
+        <!-- /navbar end -->
+
+        <!-- dropdown-buttons -->
+        <div class="dropdown" id="game-mode-menu">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                Game Mode
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item" href="#">Player vs. Payer</button>
+                <button class="dropdown-item" href="#">Player vs. Computer</button>
+            </div>
+        </div>
+        <div class="dropdown" id="grid-size-menu">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                Grid Size
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item" id="fourbyfour" onclick="dynamicTable(4)">4X4</button>
+                <button class="dropdown-item" id="sixbysix" onclick="dynamicTable(6)">6X6</button>
+                <button class="dropdown-item" id="eightbyeight" onclick="dynamicTable(8)">8X8</button>
+            </div>
+        </div>
+        <div class="dropdown" id="grid-color-menu">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                Grid Color
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item" onclick="colorInnerCells('white')">White</button>
+                <button class="dropdown-item" onclick="colorInnerCells('black')">Black</button>
+                <button class="dropdown-item" onclick="colorInnerCells('grey')">Grey</button>
+            </div>
+        </div>
+        <div class="dropdown" id="disk-color-menu">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                Disk Color
+            </button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item">Blue</button>
+                <button class="dropdown-item">Red</button>
+            </div>
+        </div>
+        <!-- /drowndown-buttons end -->
+
+        <!-- buttons -->
+        <button type="button" class="btn btn-dark" disabled onclick="startTimer()" id="start-btn">Start Game</button>
+        <button type="button" class="btn btn-light" disabled onclick="restartGame()" id="reset-btn">Restart
+            Game</button>
+        <!-- /buttons -->
+
+        <!-- timer -->
+        <ul class="nav navbar-nav ml-auto">
+            <li><span id="clock">00:00</span></li>
+        </ul>
+
+        <!-- /timer -->
+    </nav>
+    <!-- /navbar end -->
+
+    <!-- grid container -->
+    <table id="my-table" class="shadow-lg">
+
+    </table>
+    <!-- /grid container -->
+
+    <!-- UI -->
+    
+    <table class="table" id="score-board"> 
+        <thead>
+            <tr>
+                <th scope="col">Player 1</th>
+                <th scope="col">Player 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="edge">0</td>
+                <td class="edge">0</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /UI -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+
+</body>
+
+</html>

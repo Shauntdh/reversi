@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+body {
+    background-color: #8c97a3;
+}
+
+#title-name {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#button-container {
+    margin: 0;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#play-btn, #about-btn {
+    font-size: x-large;
+    margin-right: 15px;
+    padding: 10px;
+    color: black;
+}
