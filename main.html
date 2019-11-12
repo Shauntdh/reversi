@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="modal.css">
 
     <title>REVERSI</title>
 </head>
@@ -19,49 +20,8 @@
                 width="50">Reversi</span>
         <!-- /navbar end -->
 
-        <!-- dropdown-buttons -->
-        <div class="dropdown" id="game-mode-menu">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-                Game Mode
-            </button>
-            <div class="dropdown-menu">
-                <button class="dropdown-item" href="#">Player vs. Payer</button>
-                <button class="dropdown-item" href="#">Player vs. Computer</button>
-            </div>
-        </div>
-        <div class="dropdown" id="grid-size-menu">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-                Grid Size
-            </button>
-            <div class="dropdown-menu">
-                <button class="dropdown-item" id="fourbyfour" onclick="dynamicTable(4)">4X4</button>
-                <button class="dropdown-item" id="sixbysix" onclick="dynamicTable(6)">6X6</button>
-                <button class="dropdown-item" id="eightbyeight" onclick="dynamicTable(8)">8X8</button>
-            </div>
-        </div>
-        <div class="dropdown" id="grid-color-menu">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-                Grid Color
-            </button>
-            <div class="dropdown-menu">
-                <button class="dropdown-item" onclick="colorInnerCells('white')">White</button>
-                <button class="dropdown-item" onclick="colorInnerCells('black')">Black</button>
-                <button class="dropdown-item" onclick="colorInnerCells('grey')">Grey</button>
-            </div>
-        </div>
-        <div class="dropdown" id="disk-color-menu">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-                Disk Color
-            </button>
-            <div class="dropdown-menu">
-                <button class="dropdown-item">Blue</button>
-                <button class="dropdown-item">Red</button>
-            </div>
-        </div>
-        <!-- /drowndown-buttons end -->
-
         <!-- buttons -->
-        <button type="button" class="btn btn-dark" disabled onclick="startTimer()" id="start-btn">Start Game</button>
+        <button type="button" class="btn btn-light" disabled onclick="startTimer()" id="start-btn">Start Game</button>
         <button type="button" class="btn btn-light" disabled onclick="restartGame()" id="reset-btn">Restart
             Game</button>
         <!-- /buttons -->
@@ -82,8 +42,8 @@
     <!-- /grid container -->
 
     <!-- UI -->
-    
-    <table class="table" id="score-board"> 
+
+    <table class="table" id="score-board">
         <thead>
             <tr>
                 <th scope="col">Player 1</th>
@@ -99,6 +59,108 @@
     </table>
     <!-- /UI -->
 
+
+    <!-- modal -->
+    <div class="modal fade" id="start-game-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form id="regForm" action="">
+                        <!-- One "tab" for each step in the form: -->
+                        <div class="tab">
+                            <div class="form-group">
+                                <label for="game-mode-menu">Game Mode:</label>
+                                <select class="form-control m-0" id="game-mode-menu"
+                                    onchange="updateGameMode(this.value)">
+                                    <option>-- Select --</option>
+                                    <option>Player vs. Player</option>
+                                    <option>Player vs. Computer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="tab">
+                            <div class="form-group">
+                                <label for="grid-size-menu">Grid Size:</label>
+                                <select class="form-control m-0" id="grid-size-menu"
+                                    onchange="updateGridSize(this.value)">
+                                    <option>-- Select --</option>
+                                    <option id="fourbyfour">4X4</option>
+                                    <option id="sixbysix">6X6</option>
+                                    <option id="eightbyeight">8X8</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="tab">
+                            <div class="form-group">
+                                <label for="grid-color-menu">Grid Color:</label>
+                                <select class="form-control m-0" id="grid-color-menu"
+                                    onchange="updateGridColor(this.value)">
+                                    <option>-- Select --</option>
+                                    <option>White</option>
+                                    <option>Black</option>
+                                    <option>Gray</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="tab">
+                            <div class="form-group">
+                                <label for="disk-color-menu">Player 1 Disk Color:</label>
+                                <select class="form-control m-0" id="disk-color-menu"
+                                    onchange="updateDiskColorP1(this.value.toLowerCase())">
+                                    <option>-- Select --</option>
+                                    <option>Red</option>
+                                    <option>Blue</option>
+                                    <option>Purple</option>
+                                    <option>Green</option>
+                                    <option>Orange</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="disk-color-menu">Player 2 Disk Color:</label>
+                                <select class="form-control m-0" id="disk-color-menu"
+                                    onchange="updateDiskColorP2(this.value.toLowerCase())">
+                                    <option>-- Select --</option>
+                                    <option>Red</option>
+                                    <option>Blue</option>
+                                    <option>Purple</option>
+                                    <option>Green</option>
+                                    <option>Orange</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="overflow:auto;">
+                            <div style="float:right;">
+                                <button type="button" id="prevBtn" class="btn btn-secondary"
+                                    onclick="nextPrev(-1)">Previous</button>
+                                <button type="button" id="nextBtn" class="btn btn-primary"
+                                    onclick="nextPrev(1)">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px;">
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /modal -->
+
+
+
+
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -111,6 +173,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    <script src="modal.js"></script>
+
 
 </body>
 

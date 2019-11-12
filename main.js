@@ -1,10 +1,21 @@
 $(document).ready(function () {
   dynamicTable(4);
-})
+  showModal();
+
+  $("select").change(function () {
+    $("select").removeClass("invalid");
+  });
+
+});
 
 var letters = "abcdefghijklmnopqrstuvwxyz";
 var table = document.getElementById("my-table");
 var length;
+var gameMode;
+var gridSize;
+var gridColor;
+var diskColorP1;
+var diskColorP2;
 
 var currentPlayer = 1;
 
@@ -49,9 +60,9 @@ function insertRowNums() {
     table.rows[i].cells[0].innerHTML = i;
     table.rows[i].cells[length - 1].innerHTML = i;
 
-      //  Adding "edge" class for click detection
-      table.rows[i].cells[0].classList.add("edge");
-      table.rows[i].cells[length - 1].classList.add("edge");
+    //  Adding "edge" class for click detection
+    table.rows[i].cells[0].classList.add("edge");
+    table.rows[i].cells[length - 1].classList.add("edge");
   }
   table.rows[0].cells[0].classList.add("edge");
   table.rows[0].cells[length - 1].classList.add("edge");
@@ -104,7 +115,7 @@ function clock() {
     sec = 0;
     min += 1;
   }
-  
+
   clock.text(toDD(min) + ":" + toDD(sec));
 }
 
@@ -128,16 +139,24 @@ function resetTimer() {
 }
 
 function addClickListener() {
-  $( "td:not(.edge) > .fill-container").click(function(e) {
+  $("td:not(.edge) > .fill-container").click(function (e) {
     var disk = e.target.firstChild;
+
+    if ($(disk).hasClass("disk")) {
+      e.stopPropagation();
+      console.log("has disk");
+      return;
+    }
+
     $(disk).addClass("disk");
     if (currentPlayer == 1) {
-      $(disk).addClass("bg-danger");
-      $(disk).removeClass("bg-success");
+      $(disk).addClass("player1Style");
+      $(disk).removeClass("player2Style");
     } else {
-      $(disk).addClass("bg-success");
-      $(disk).removeClass("bg-danger");
+      $(disk).addClass("player2Style");
+      $(disk).removeClass("player1Style");
     }
+    changePlayer();
   });
 }
 
@@ -171,4 +190,57 @@ function changeToPause() {
 
 function changeToStart() {
   $("#start-btn").text("Start Game");
+}
+
+function changeDiskColor(newColor, playerClass) {
+  var disks = $(playerClass);
+  for (var i = 0; i < disks.length; i++) {
+    disks[i].style.backgroundColor = newColor;
+  }
+}
+
+function showModal() {
+  $('#start-game-modal').modal({
+    show: true,
+    keyboard: false,
+    backdrop: 'static'
+  });
+}
+
+function hideModal() {
+  $('#start-game-modal').modal('hide');
+}
+
+function updateGameMode(gameModeValue) {
+  gameMode = gameModeValue;
+}
+
+function updateGridSize(gridSizeValue) {
+  gridSize = Number(gridSizeValue.split('X')[0]);
+}
+
+function updateGridColor(gridColorValue) {
+  gridColor = gridColorValue.toLowerCase();
+}
+
+function updateDiskColorP1(diskColorValue) {
+  diskColorP1 = diskColorP2 === diskColorValue ? "dark" + diskColorValue : diskColorValue;
+  $('.player1Style').css('background-color', diskColorP1);
+}
+
+function updateDiskColorP2(diskColorValue) {
+  diskColorP2 = diskColorP1 === diskColorValue ? "dark" + diskColorValue : diskColorValue;
+  $('.player2Style').css('background-color', diskColorP2);
+
+}
+
+function finishedForm() {
+  dynamicTable(gridSize);
+  colorAllCells(gridColor);
+  hideModal();
+}
+
+function changePlayer() {
+  currentPlayer = currentPlayer === 1 ? 2 : 1;
+  console.log(currentPlayer);
 }
