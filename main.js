@@ -1,10 +1,12 @@
 $(document).ready(function () {
-  dynamicTable(4);
+  // dynamicTable(4);
   showModal();
 
   $("select").change(function () {
     $("select").removeClass("invalid");
   });
+
+  
 
 });
 
@@ -16,6 +18,7 @@ var gridSize;
 var gridColor;
 var diskColorP1;
 var diskColorP2;
+var isClickListenerAdded = false;
 
 var currentPlayer = 1;
 
@@ -69,7 +72,7 @@ function insertRowNums() {
 }
 
 function colorAllCells(color) {
-  document.querySelectorAll("#my-table td").forEach(function (e) {
+  document.querySelectorAll("#my-table td:not(.edge)").forEach(function (e) {
     e.style.backgroundColor = color;
   });
 }
@@ -92,6 +95,7 @@ function startTimer() {
   if (!isClockRunning) {
     isClockRunning = true;
     timer = setInterval(clock, 1000);
+    enableBoard();
     changeToPause();
   } else {
     pauseGame();
@@ -104,6 +108,7 @@ function pauseGame() {
   if (isClockRunning) {
     isClockRunning = false;
     changeToStart();
+    disableBoard();
   }
 }
 
@@ -124,9 +129,12 @@ function toDD(n) {
 }
 
 function restartGame() {
-  resetTimer();
-  removeDisks();
-  startTimer();
+  // resetTimer();
+  // removeDisks();
+  // startTimer();
+  // resetValues();
+  // setboard();
+  location.reload();
 }
 
 function resetTimer() {
@@ -139,6 +147,11 @@ function resetTimer() {
 }
 
 function addClickListener() {
+  if (isClickListenerAdded) {
+    return false;
+  }
+
+  isClickListenerAdded = true;
   $("td:not(.edge) > .fill-container").click(function (e) {
     var disk = e.target.firstChild;
 
@@ -151,10 +164,12 @@ function addClickListener() {
     $(disk).addClass("disk");
     if (currentPlayer == 1) {
       $(disk).addClass("player1Style");
-      $(disk).removeClass("player2Style");
+      $(disk).css('background-color', diskColorP1);
+      // $(disk).removeClass("player2Style");
     } else {
       $(disk).addClass("player2Style");
-      $(disk).removeClass("player1Style");
+      $(disk).css('background-color', diskColorP2);
+      // $(disk).removeClass("player1Style");
     }
     changePlayer();
   });
@@ -225,22 +240,64 @@ function updateGridColor(gridColorValue) {
 
 function updateDiskColorP1(diskColorValue) {
   diskColorP1 = diskColorP2 === diskColorValue ? "dark" + diskColorValue : diskColorValue;
-  $('.player1Style').css('background-color', diskColorP1);
+  // $('.player1Style').css('background-color', diskColorP1);
 }
 
 function updateDiskColorP2(diskColorValue) {
   diskColorP2 = diskColorP1 === diskColorValue ? "dark" + diskColorValue : diskColorValue;
-  $('.player2Style').css('background-color', diskColorP2);
+  // $('.player2Style').css('background-color', diskColorP2);
 
 }
 
 function finishedForm() {
+  // Setting defaults for testing
+  setDefaults();
+
   dynamicTable(gridSize);
   colorAllCells(gridColor);
   hideModal();
+  startResumeGame();
+  setboard();
 }
 
 function changePlayer() {
   currentPlayer = currentPlayer === 1 ? 2 : 1;
-  console.log(currentPlayer);
 }
+
+function setboard() {
+  var i = gridSize / 2;
+  var j = gridSize / 2;
+  table.rows[i].cells[j].firstChild.click();
+  table.rows[i].cells[j + 1].firstChild.click();
+  table.rows[i + 1].cells[j + 1].firstChild.click();
+  table.rows[i + 1].cells[j].firstChild.click();
+}
+
+function setDefaults() {
+  updateGameMode($("#game-mode-menu").val());
+  updateGridSize($("#grid-size-menu").val());
+  updateGridColor($("#grid-color-menu").val());
+  updateDiskColorP1($("#disk-color-menu1").val());
+  updateDiskColorP2($("#disk-color-menu2").val());
+}
+
+function startResumeGame() {
+  $("#start-btn").click()
+}
+
+function resetValues() {
+  currentPlayer = 1;
+}
+
+function disableBoard() {
+  $( "#my-table > tbody" ).css( "pointer-events","none");
+}
+
+function enableBoard() {
+  $( "#my-table > tbody" ).css( "pointer-events","unset");
+}
+
+// function makeplayer1orange() {
+//   $(".player1Style").css("backgroundColor", "orange");
+//   $(".player1Style").css("backgroundColor", "orange");
+// }

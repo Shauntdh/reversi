@@ -11,12 +11,26 @@
 </head>
 
 <body>
-    <img id="title-name" src="Assets/LogoMakr_0Aa80b.png" alt="title">
+    <h1 class="title-text">Reversi</h1>
 
-    <div id="button-container">
-        <a id="play-btn" class="btn btn-light" href="main.html">Play Game</a>
-        <a id="about-btn" class="btn btn-light" href="about.html">About Game</a>
+    <div class="button-container">
+        <a href="main.html"><button class="btn-play btn btn-light">Play Game</button></a>
+        <a href="about.html"><button class="btn-about-game btn btn-transparent">About Game</button></a>
     </div>
+
+
+    <nav class="top-nav navbar navbar-expand-lg navbar-light bg-transparent">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-container collapse navbar-collapse" id="navbarNav">
+            <div class="mr-auto"></div>
+            <ul class="nav-list navbar-nav">
+                <li><button type="button" class="login-btn btn btn-transparent">Login</button></li>
+            </ul>
+        </div>
+    </nav>
 
 
 

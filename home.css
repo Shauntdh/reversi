@@ -6,11 +6,7 @@ a {
     color: inherit;
 }
 
-body {
-    background-color: #8c97a3;
-}
-
-#title-name {
+.title-text {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -18,7 +14,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#button-container {
+.button-container {
     margin: 0;
     position: absolute;
     top: 70%;
@@ -26,9 +22,53 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#play-btn, #about-btn {
-    font-size: x-large;
-    margin-right: 15px;
-    padding: 10px;
-    color: black;
+.button-container .btn-play {
+    border: none;
+    transition: font-size .1s linear;
+    font-size: 1.5rem;
+    background-color: white;
+}
+
+.button-container .btn-play:hover {
+    font-size: 1.7rem;
+    color: blueviolet;
+    background-color: #ffffff !important;
+}
+
+.button-container .btn-about-game {
+    border: 1px solid black;
+    transition: border-width .1s linear;
+    transition: font-size .1s linear;
+    border-radius: 1rem;
+    font-size: 1.1rem;
+}
+
+.button-container .btn-about-game:hover {
+    font-size: 1.2rem;
+    border-width: 1.5px
+}
+
+.button-container a {
+    padding: 1.7rem;
+}
+
+.button-container a button {
+    padding: 1rem;
+}
+
+.top-nav .navbar-container .nav-list li .login-btn {
+    margin-top: 1rem;
+    margin-right: 5rem;
+    border: 1px solid black;
+    transition: border-width .1s linear;
+    transition: font-size .1s linear;
+    border-radius: 1rem;
+    font-size: 1.3rem;
+}
+
+.top-nav .navbar-container .nav-list li .login-btn:hover {
+    border-width: 2px;
+    font-size: 1.4rem;
+    border-color: blueviolet;
+    color: blueviolet;
 }

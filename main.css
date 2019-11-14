@@ -26,22 +26,21 @@ body {
     margin-left: 5px;
 }
 
-#game-mode-menu, #grid-size-menu, #grid-color-menu, #disk-color-menu  {
+#game-mode-menu, #grid-size-menu, #grid-color-menu, #disk-color-menu1, #disk-color-menu2  {
     margin: 0px 5px 0px;
     text-align: center;
     cursor: pointer;
 }
 
-table {
+#my-table {
     margin: 0;
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 25%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     height: 500px;
     width: 500px;
     border-collapse: unset !important;
-    border-radius: 15%;
     table-layout: fixed;
     border-color: transparent !important;
 }
@@ -54,13 +53,14 @@ table, td {
 
 #score-board {
     margin: 0;
-    position: absolute;
+    /* position: absolute;
     top: 35%;
     left: 68%;
-    transform: translate(-50%, -50%);
-    translate: trans;
+    transform: translate(-50%, -50%); */
+    /* translate: trans; */
     width: 35rem;
     height: 10rem;
+    border-color: transparent !important;
 }
 
 #timer-container {
@@ -83,6 +83,7 @@ table, td {
     border-radius: 25px;
     border: solid 1px gray;
     transform: translate(50%, 50%);
+    pointer-events: none;
 }
 
 .fill-container {
@@ -108,9 +109,10 @@ td:not(.edge):hover {
 }
 
 .player1Style {
-    background-color: red;
+    /* background-color: red; */
 }
 
 .player2Style {
-    background-color: blue;
+    /* background-color: blue; */
 }
+

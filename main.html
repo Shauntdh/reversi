@@ -14,7 +14,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-sm bg-light navbar-light shadow-lg">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light shadow-lg">
         <!-- Navbar-brand -->
         <span id="logo-text"><img id="logo" src="assets/LogoMakr_2t4XaO.png" alt="logo" height="50"
                 width="50">Reversi</span>
@@ -35,29 +35,34 @@
     </nav>
     <!-- /navbar end -->
 
-    <!-- grid container -->
-    <table id="my-table" class="shadow-lg">
+    <div class="row mt-5">
+        <div class="col-12 col-md-6">
+            <!-- grid container -->
+            <table id="my-table" class="shadow-lg mx-auto">
 
-    </table>
-    <!-- /grid container -->
+            </table>
+            <!-- /grid container -->
+        </div>
+        <div class="col-12 col-md-6">
+            <!-- UI -->
+            <table class="table mx-auto" id="score-board">
+                <thead>
+                    <tr>
+                        <th scope="col">Player 1</th>
+                        <th scope="col">Player 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="edge">0</td>
+                        <td class="edge">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /UI -->
+        </div>
+    </div>
 
-    <!-- UI -->
-
-    <table class="table" id="score-board">
-        <thead>
-            <tr>
-                <th scope="col">Player 1</th>
-                <th scope="col">Player 2</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="edge">0</td>
-                <td class="edge">0</td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- /UI -->
 
 
     <!-- modal -->
@@ -74,7 +79,8 @@
                                 <select class="form-control m-0" id="game-mode-menu"
                                     onchange="updateGameMode(this.value)">
                                     <option>-- Select --</option>
-                                    <option>Player vs. Player</option>
+                                    <!-- Remove this -->
+                                    <option selected>Player vs. Player</option>
                                     <option>Player vs. Computer</option>
                                 </select>
                             </div>
@@ -87,7 +93,8 @@
                                     onchange="updateGridSize(this.value)">
                                     <option>-- Select --</option>
                                     <option id="fourbyfour">4X4</option>
-                                    <option id="sixbysix">6X6</option>
+                                    <!-- Remove later -->
+                                    <option id="sixbysix" selected>6X6</option>
                                     <option id="eightbyeight">8X8</option>
                                 </select>
                             </div>
@@ -99,7 +106,8 @@
                                 <select class="form-control m-0" id="grid-color-menu"
                                     onchange="updateGridColor(this.value)">
                                     <option>-- Select --</option>
-                                    <option>White</option>
+                                    <!-- Remove later -->
+                                    <option selected>White</option>
                                     <option>Black</option>
                                     <option>Gray</option>
                                 </select>
@@ -108,11 +116,12 @@
 
                         <div class="tab">
                             <div class="form-group">
-                                <label for="disk-color-menu">Player 1 Disk Color:</label>
-                                <select class="form-control m-0" id="disk-color-menu"
+                                <label for="disk-color-menu1">Player 1 Disk Color:</label>
+                                <select class="form-control m-0" id="disk-color-menu1"
                                     onchange="updateDiskColorP1(this.value.toLowerCase())">
                                     <option>-- Select --</option>
-                                    <option>Red</option>
+                                    <!-- Remove selected -->
+                                    <option selected>Red</option>
                                     <option>Blue</option>
                                     <option>Purple</option>
                                     <option>Green</option>
@@ -120,14 +129,15 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="disk-color-menu">Player 2 Disk Color:</label>
-                                <select class="form-control m-0" id="disk-color-menu"
+                                <label for="disk-color-menu2">Player 2 Disk Color:</label>
+                                <select class="form-control m-0" id="disk-color-menu2"
                                     onchange="updateDiskColorP2(this.value.toLowerCase())">
                                     <option>-- Select --</option>
                                     <option>Red</option>
                                     <option>Blue</option>
                                     <option>Purple</option>
-                                    <option>Green</option>
+                                    <!-- Remove selected -->
+                                    <option selected>Green</option>
                                     <option>Orange</option>
                                 </select>
                             </div>
