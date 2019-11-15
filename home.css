@@ -5,25 +5,16 @@
 a {
     color: inherit;
 }
-
-.title-text {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
+/* 
 .button-container {
     margin: 0;
     position: absolute;
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+} */
 
 .button-container .btn-play {
-    border: none;
     transition: font-size .1s linear;
     font-size: 1.5rem;
     background-color: white;
@@ -31,21 +22,16 @@ a {
 
 .button-container .btn-play:hover {
     font-size: 1.7rem;
-    color: blueviolet;
-    background-color: #ffffff !important;
+    background-color: white !important;
 }
 
 .button-container .btn-about-game {
-    border: 1px solid black;
-    transition: border-width .1s linear;
     transition: font-size .1s linear;
-    border-radius: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
 }
 
 .button-container .btn-about-game:hover {
-    font-size: 1.2rem;
-    border-width: 1.5px
+    font-size: 1.7rem;
 }
 
 .button-container a {
@@ -56,19 +42,43 @@ a {
     padding: 1rem;
 }
 
+.logo-img {
+    height: 200px;
+    width: 200px;
+}
+
 .top-nav .navbar-container .nav-list li .login-btn {
-    margin-top: 1rem;
-    margin-right: 5rem;
-    border: 1px solid black;
-    transition: border-width .1s linear;
+    /* margin-top: 1rem;
+    margin-right: 5rem; */
+    padding: 7px 20px 7px 20px;
     transition: font-size .1s linear;
-    border-radius: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    background-color: blueviolet;
+    color: white;
 }
 
 .top-nav .navbar-container .nav-list li .login-btn:hover {
-    border-width: 2px;
-    font-size: 1.4rem;
-    border-color: blueviolet;
-    color: blueviolet;
+    font-size: 1.5rem;
+}
+
+.top-nav .navbar-container .nav-list li .sign-up-btn {
+    /* margin-top: 1rem;
+    margin-right: 2rem; */
+    padding: 7px 20px 7px 20px;
+    transition: font-size .1s linear;
+    font-size: 1.3rem;
+}
+
+.top-nav .navbar-container .nav-list li .sign-up-btn:hover {
+    font-size: 1.5rem;
+}
+
+.login-modal .modal-dialog .modal-content .modal-body .container-fluid .logo-area .logo-img {
+    height: 100px;
+    width: 100px;
+}
+
+.sign-up-modal .modal-dialog .modal-content .modal-body .container-fluid .logo-area .logo-img {
+    height: 100px;
+    width: 100px;
 }
