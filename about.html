@@ -13,12 +13,61 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-sm bg-light navbar-light shadow-lg   ">
+    <nav class="m-4 navbar navbar-expand-sm">
         <!-- Navbar-brand -->
-        <span id="logo-text"><img id="logo" src="assets/LogoMakr_2t4XaO.png" alt="logo" height="50"
-                width="50">Reversi</span>
+        <span id="logo-text"><img id="logo" src="assets/LogoMakr_6bnajQ.png" alt="logo" height="75" width="75"></span>
         <!-- /navbar end -->
+        <a href="home.html" class="main-menu-btn ml-auto"><button
+                class="btn-main-menu btn btn-transparent border rounded-pill">Main Menu
+            </button></a>
     </nav>
+
+    <div class="m-5 row about-game">
+        <div class="col">
+            <h3 class="rules-title">Reversi Rules</h3>
+            <p class="rules">
+                Reversi (also known as Othello) is a pretty simple game. It consists of a 8x8 (or 4x4 and 6x6) square
+                board, and pieces
+                with one black and one white side. Each player has a color, and the aim of the game is to get more of
+                your pieces on the board than the opponent's pieces.
+            </p>
+            <h3 class="gameplay-title mt-5">Gameplay</h3>
+            <p class="gameplay">
+                At the start of the game there are four pieces on the board, two white and two black. You must try to
+                capture opponent pieces and flip them over so they turn into your color. You do this by making a
+                horizontal, vertical or diagonal line of pieces, where your pieces surround the other player's pieces.
+                The surrounded opponent pieces are then captured and will be flipped over to your color, increasing the
+                number of your pieces on the board.
+
+                Example: You have the black pieces. There is one black piece on the board, next to it are 4 white pieces
+                in a line. You put a black piece at the end of the line, now you have 4 white pieces between 2 black
+                pieces, so those white pieces turn to black.
+
+                Every move you make must capture some opponent pieces. This means that every time it's your turn you
+                must place one of your pieces next to a line of one or more opponent pieces, where there's another one
+                of your pieces at the other end of the line. It sounds complicated, but we show you the available
+                squares for moves with semi-transparent circles, so it's easy to learn the game once you start playing.
+
+                If there is no available move on the board that captures pieces then you must say Pass and your opponent
+                gets to play again. If both players say pass in a row then there are no more moves on the board and the
+                game ends. Usually it ends when the board is completely full though.
+            </p>
+        </div>
+        <div class="ml-5 my-auto col">
+            <img src="Assets/reversigame.png" alt="img" class="boardgame">
+        </div>
+    </div>
+    <div class="m-5 row">
+        <div class="col">
+            <h3 class="wining-title">
+                Winning
+            </h3>
+            <p class="winning">
+                The game ends when the board is full, both players say pass, or one player surrenders. At that time
+                the pieces on the board are counted and the player with more pieces wins.
+            </p>
+        </div>
+    </div>
 
 
 

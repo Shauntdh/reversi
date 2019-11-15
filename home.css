@@ -5,33 +5,28 @@
 a {
     color: inherit;
 }
-/* 
-.button-container {
-    margin: 0;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-} */
+
+.top-nav {
+    margin: 2rem 2rem 8rem 1rem;
+}
 
 .button-container .btn-play {
-    transition: font-size .1s linear;
+    transition: background-color .1s linear;
     font-size: 1.5rem;
     background-color: white;
 }
 
 .button-container .btn-play:hover {
-    font-size: 1.7rem;
-    background-color: white !important;
+    background-color: #f8f9fa;
 }
 
 .button-container .btn-about-game {
-    transition: font-size .1s linear;
+    transition: background-color .1s linear;
     font-size: 1.5rem;
 }
 
 .button-container .btn-about-game:hover {
-    font-size: 1.7rem;
+    background-color: #f8f9fa;
 }
 
 .button-container a {
@@ -48,29 +43,23 @@ a {
 }
 
 .top-nav .navbar-container .nav-list li .login-btn {
-    /* margin-top: 1rem;
-    margin-right: 5rem; */
-    padding: 7px 20px 7px 20px;
-    transition: font-size .1s linear;
-    font-size: 1.2rem;
-    background-color: blueviolet;
-    color: white;
+    transition: background-color .1s linear;
+    font-size: 1.3rem;
+    padding: .5rem 1rem .5rem 1rem;
 }
 
 .top-nav .navbar-container .nav-list li .login-btn:hover {
-    font-size: 1.5rem;
+    background-color: #f8f9fa;
 }
 
 .top-nav .navbar-container .nav-list li .sign-up-btn {
-    /* margin-top: 1rem;
-    margin-right: 2rem; */
-    padding: 7px 20px 7px 20px;
-    transition: font-size .1s linear;
+    transition: background-color .1s linear;
     font-size: 1.3rem;
+    padding: .5rem 1rem .5rem 1rem;
 }
 
 .top-nav .navbar-container .nav-list li .sign-up-btn:hover {
-    font-size: 1.5rem;
+    background-color: #f8f9fa;
 }
 
 .login-modal .modal-dialog .modal-content .modal-body .container-fluid .logo-area .logo-img {

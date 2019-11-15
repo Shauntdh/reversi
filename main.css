@@ -6,20 +6,31 @@ body {
     background-color: #f8f9fa;
 }
 
-#logo-text {
-    font-family: monospace;
-    font-weight: bold;
-    font-size: xx-large;
-    color: black; 
+.main-navbar {
+    padding: 1.5rem !important;
+    margin-bottom: 7rem !important;
 }
 
-#logo {
-    margin-right: 10px;
-}
-
-#start-btn, #reset-btn {
-    margin: 0px 0px 0px 20px;
+.main-navbar .start-btn {
+    font-size: 1rem;
+    padding: 1rem;
     cursor: pointer;
+    transition: background-color .1s linear;
+}
+
+.main-navbar .reset-btn {
+    font-size: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background-color .1s linear;
+}
+
+.main-navbar .start-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.main-navbar .reset-btn:hover {
+    background-color: #f8f9fa;
 }
 
 #game-mode-menu {
@@ -105,3 +116,11 @@ td:not(.edge):hover {
     height: 50px;
 
 }
+
+.currentPlayerTurn {
+    background-color: blueviolet;
+  }
+  
+.notHoverable {
+    pointer-events: none !important;
+  }

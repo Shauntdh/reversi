@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav class="top-nav navbar navbar-expand-lg navbar-light bg-transparent mb-5">
+    <nav class="top-nav navbar navbar-expand-lg navbar-light bg-transparent">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,8 +21,8 @@
             <ul class="nav-list navbar-nav">
                 <li><button type="button" class="sign-up-btn btn btn-transparent border rounded-pill mr-2"
                         data-toggle="modal" data-target="login-modal" onclick="loadModalSignUp()">Sign Up</button></li>
-                <li><button type="button" class="login-btn btn btn-transparent border rounded-pill mr-2" data-toggle="modal"
-                        data-target="login-modal" onclick="loadModalLogin()">Login</button></li>
+                <li><button type="button" class="login-btn btn btn-transparent border rounded-pill mr-2"
+                        data-toggle="modal" data-target="login-modal" onclick="loadModalLogin()">Login</button></li>
             </ul>
         </div>
     </nav>
@@ -39,10 +39,11 @@
     <div class="button-container">
         <div class="row title-btns">
             <div class="col-6">
-                <a href="main.html" class="float-right"><button class="btn-play btn btn-light border rounded-pill">Play Game</button></a>
+                <a href="main.html" class="float-right"><button class="btn-play btn btn-transparent rounded-pill">Play
+                        Game</button></a>
             </div>
             <div class="col-6 my-auto">
-                <a href="about.html"><button class="btn-about-game btn btn-transparent border rounded-pill">About
+                <a href="about.html"><button class="btn-about-game btn btn-transparent rounded-pill">About
                         Game</button></a>
             </div>
         </div>
@@ -110,6 +111,35 @@
                                 <div class="password-form form-group">
                                     <input type="password" class="form-control" id="sign-up-password"
                                         placeholder="Password">
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="First name">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Last name">
+                                    </div>
+                                </div>
+                                <div class="form-row mt-3">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Age">
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check form-check-inline ml-4 mt-1">
+                                            <input class="form-check-input" type="radio" name="male-radio"
+                                                id="male-radio" value="option1">
+                                            <label class="form-check-label" for="male-radio">
+                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="female-radio"
+                                                id="female-radio" value="option2">
+                                            <label class="form-check-label" for="female-radio">
+                                                Female
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>

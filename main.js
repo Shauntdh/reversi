@@ -23,7 +23,7 @@ var isClickListenerAdded = false;
 var currentPlayer = 1;
 
 function getCurrentPlayerColor() {
-  if(currentPlayer === 1) {
+  if (currentPlayer === 1) {
     return diskColorP1.toLowerCase();
   }
   else {
@@ -139,11 +139,6 @@ function toDD(n) {
 }
 
 function restartGame() {
-  // resetTimer();
-  // removeDisks();
-  // startTimer();
-  // resetValues();
-  // setboard();
   location.reload();
 }
 
@@ -163,6 +158,7 @@ function addClickListener() {
 
   isClickListenerAdded = true;
   $("td:not(.edge) > .fill-container").click(function (e) {
+    console.log(e);
     var disk = e.target.firstChild;
 
     if ($(disk).hasClass("disk")) {
@@ -175,12 +171,19 @@ function addClickListener() {
     if (currentPlayer == 1) {
       $(disk).addClass("player1Style");
       $(disk).css('background-color', diskColorP1);
+      // let playerscore = $("#player1score");
+      // playerscore.val(playerscore.val() + 1);
+      // console.log(playerscore);
       // $(disk).removeClass("player2Style");
     } else {
+      // let playerscore = $("#player2score");
+      // playerscore.val(playerscore.val() + 1);
       $(disk).addClass("player2Style");
       $(disk).css('background-color', diskColorP2);
       // $(disk).removeClass("player1Style");
     }
+    // flipAllDirections()
+
     changePlayer();
     toggleHoverableSquares();
   });
@@ -272,7 +275,11 @@ function finishedForm() {
 }
 
 function changePlayer() {
+  var currentPlayerTurn = "currentPlayerTurn";
   currentPlayer = currentPlayer === 1 ? 2 : 1;
+  $(".playerNames").css("backgroundColor", "transparent");
+  $("#player" + currentPlayer + "Name").css("backgroundColor", getCurrentPlayerColor());
+
 }
 
 function setboard() {
@@ -308,24 +315,19 @@ function enableBoard() {
   $("#my-table > tbody").css("pointer-events", "unset");
 }
 
-// function makeplayer1orange() {
-//   $(".player1Style").css("backgroundColor", "orange");
-//   $(".player1Style").css("backgroundColor", "orange");
-// }
-
 function toggleHoverableSquares() {
   // $("#my-table td:has('.disk')").addClass("notHoverable");
 
   // --------------------------------------------------------
 
-  for (let i = 1; i < table.rows.length-1; i++) {
-    for (let j = 1; j < table.rows[i].cells.length-1; j++) {
+  for (let i = 1; i < table.rows.length - 1; i++) {
+    for (let j = 1; j < table.rows[i].cells.length - 1; j++) {
       let cell = $(table.rows[i].cells[j]);
       // if ($(cell).hasClass("edge")){
       //   continue;
       // }
 
-      if (isSquareClickable(i,j)) {
+      if (isSquareClickable(i, j)) {
         $(cell).removeClass("notHoverable");
       } else {
         $(cell).addClass("notHoverable");
@@ -340,31 +342,50 @@ function isDirectionClickable(i, j, foundOP, op1, op2) {
     // console.log(i,j,"edgeHit");
     return false;
   }
-  else if (!hasDiskChild(i,j)) {
+  else if (!hasDiskChild(i, j)) {
     // console.log(i,j,"nodisk");
     return false;
   }
-  else if (getCurrentPlayerColor() !== getDiskColor(i,j)) {
+  else if (getCurrentPlayerColor() !== getDiskColor(i, j)) {
     // console.log(i,j,"oppositeColor", getCurrentPlayerColor(), getDiskColor(i,j),true);
-    return isDirectionClickable(i+(op1), j+(op2), true, op1, op2);
-}
+    return isDirectionClickable(i + (op1), j + (op2), true, op1, op2);
+  }
   // console.log(i,j,"samecolor",foundOP);
   return foundOP;
 
 }
 
-function hasDiskChild(i,j) {
+function flipDirection(i, j, op1, op2) {
+  // console.log(i,j,foundOP,op1,op2);
+  if ($(table.rows[i].cells[j]).hasClass('edge')) {
+    // console.log(i,j,"edgeHit");
+    return;
+  }
+  else if (!hasDiskChild(i, j)) {
+    // console.log(i,j,"nodisk");
+    return;
+  }
+  else if (getCurrentPlayerColor() !== getDiskColor(i, j)) {
+    flipDisk(i,j);
+    // console.log(i,j,"oppositeColor", getCurrentPlayerColor(), getDiskColor(i,j),true);
+    flipDirection(i + (op1), j + (op2), op1, op2);
+  }
+  // console.log(i,j,"samecolor",foundOP);
+
+}
+
+function hasDiskChild(i, j) {
   return $(table.rows[i].cells[j]).find(".disk").length === 1;
 }
 
 function getDiskColor(i, j) {
   if (!hasDiskChild(i, j)) return "transparent";
   return $(table.rows[i].cells[j]).find(".disk")[0].style.backgroundColor;
-  
+
 }
 
-function isSquareClickable(i,j) {
-  if (hasDiskChild(i ,j)) return false
+function isSquareClickable(i, j) {
+  if (hasDiskChild(i, j)) return false
   if (isDirectionClickable(i - 1, j, false, -1, 0)) return true;
   if (isDirectionClickable(i - 1, j + 1, false, -1, 1)) return true;
   if (isDirectionClickable(i, j + 1, false, 0, 1)) return true;
@@ -374,4 +395,25 @@ function isSquareClickable(i,j) {
   if (isDirectionClickable(i, j - 1, false, 0, -1)) return true;
   if (isDirectionClickable(i - 1, j - 1, false, -1, -1)) return true;
   return false;
+}
+
+function flipDisk(i, j) {
+  let newColor = getCurrentPlayerColor();
+  let cell = $($(table.rows[i].cells[j])[0]).find(".disk");
+  cell.removeClass("player1Style player2Style");
+  cell.addClass("player"+currentPlayer+"Style");
+  cell.css("backgroundColor", newColor);
+  
+  let currentPlayerScore = $("player"+currentPlayer+"score");
+
+  let player1score = $("#player1score");
+  let player2score = $("#player2score");
+  if (currentPlayer === 1) {
+    player1score.val(player1score.val() + 1);
+    player2score.val(player2score.val() - 1);
+  } else {
+    player1score.val(player1score.val() - 1);
+    player2score.val(player2score.val() + 1);
+  }
+  
 }
