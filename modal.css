@@ -47,3 +47,7 @@
   .step.finish {
     background-color: #4CAF50;
   }
+
+  .notHoverable {
+    pointer-events: none !important;
+  }

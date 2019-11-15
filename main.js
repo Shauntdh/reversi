@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("select").removeClass("invalid");
   });
 
-  
+
 
 });
 
@@ -21,6 +21,15 @@ var diskColorP2;
 var isClickListenerAdded = false;
 
 var currentPlayer = 1;
+
+function getCurrentPlayerColor() {
+  if(currentPlayer === 1) {
+    return diskColorP1.toLowerCase();
+  }
+  else {
+    return diskColorP2.toLowerCase();
+  }
+}
 
 
 function dynamicTable(x) {
@@ -102,6 +111,7 @@ function startTimer() {
     clearInterval(timer);
   }
   addClickListener();
+  // toggleHoverableSquares();
 }
 
 function pauseGame() {
@@ -172,6 +182,7 @@ function addClickListener() {
       // $(disk).removeClass("player1Style");
     }
     changePlayer();
+    toggleHoverableSquares();
   });
 }
 
@@ -290,14 +301,77 @@ function resetValues() {
 }
 
 function disableBoard() {
-  $( "#my-table > tbody" ).css( "pointer-events","none");
+  $("#my-table > tbody").css("pointer-events", "none");
 }
 
 function enableBoard() {
-  $( "#my-table > tbody" ).css( "pointer-events","unset");
+  $("#my-table > tbody").css("pointer-events", "unset");
 }
 
 // function makeplayer1orange() {
 //   $(".player1Style").css("backgroundColor", "orange");
 //   $(".player1Style").css("backgroundColor", "orange");
 // }
+
+function toggleHoverableSquares() {
+  // $("#my-table td:has('.disk')").addClass("notHoverable");
+
+  // --------------------------------------------------------
+
+  for (let i = 1; i < table.rows.length-1; i++) {
+    for (let j = 1; j < table.rows[i].cells.length-1; j++) {
+      let cell = $(table.rows[i].cells[j]);
+      // if ($(cell).hasClass("edge")){
+      //   continue;
+      // }
+
+      if (isSquareClickable(i,j)) {
+        $(cell).removeClass("notHoverable");
+      } else {
+        $(cell).addClass("notHoverable");
+      }
+    }
+  }
+}
+
+function isDirectionClickable(i, j, foundOP, op1, op2) {
+  // console.log(i,j,foundOP,op1,op2);
+  if ($(table.rows[i].cells[j]).hasClass('edge')) {
+    // console.log(i,j,"edgeHit");
+    return false;
+  }
+  else if (!hasDiskChild(i,j)) {
+    // console.log(i,j,"nodisk");
+    return false;
+  }
+  else if (getCurrentPlayerColor() !== getDiskColor(i,j)) {
+    // console.log(i,j,"oppositeColor", getCurrentPlayerColor(), getDiskColor(i,j),true);
+    return isDirectionClickable(i+(op1), j+(op2), true, op1, op2);
+}
+  // console.log(i,j,"samecolor",foundOP);
+  return foundOP;
+
+}
+
+function hasDiskChild(i,j) {
+  return $(table.rows[i].cells[j]).find(".disk").length === 1;
+}
+
+function getDiskColor(i, j) {
+  if (!hasDiskChild(i, j)) return "transparent";
+  return $(table.rows[i].cells[j]).find(".disk")[0].style.backgroundColor;
+  
+}
+
+function isSquareClickable(i,j) {
+  if (hasDiskChild(i ,j)) return false
+  if (isDirectionClickable(i - 1, j, false, -1, 0)) return true;
+  if (isDirectionClickable(i - 1, j + 1, false, -1, 1)) return true;
+  if (isDirectionClickable(i, j + 1, false, 0, 1)) return true;
+  if (isDirectionClickable(i + 1, j + 1, false, 1, 1)) return true;
+  if (isDirectionClickable(i + 1, j, false, 1, 0)) return true;
+  if (isDirectionClickable(i + 1, j - 1, false, 1, -1)) return true;
+  if (isDirectionClickable(i, j - 1, false, 0, -1)) return true;
+  if (isDirectionClickable(i - 1, j - 1, false, -1, -1)) return true;
+  return false;
+}
