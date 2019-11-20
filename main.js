@@ -158,12 +158,12 @@ function addClickListener() {
 
   isClickListenerAdded = true;
   $("td:not(.edge) > .fill-container").click(function (e) {
-    console.log(e);
+    // console.log(e);
     var disk = e.target.firstChild;
 
     if ($(disk).hasClass("disk")) {
       e.stopPropagation();
-      console.log("has disk");
+      // console.log("has disk");
       return;
     }
 
@@ -171,21 +171,38 @@ function addClickListener() {
     if (currentPlayer == 1) {
       $(disk).addClass("player1Style");
       $(disk).css('background-color', diskColorP1);
-      // let playerscore = $("#player1score");
-      // playerscore.val(playerscore.val() + 1);
+      let playerscore = $("#player1score");
+      playerscore.val(playerscore.val("playerscore + 1"));
       // console.log(playerscore);
       // $(disk).removeClass("player2Style");
     } else {
-      // let playerscore = $("#player2score");
-      // playerscore.val(playerscore.val() + 1);
+      let playerscore = $("#player2score");
+      playerscore.val(playerscore.val("playerscore + 1"));
       $(disk).addClass("player2Style");
       $(disk).css('background-color', diskColorP2);
       // $(disk).removeClass("player1Style");
     }
-    // flipAllDirections()
+
+    // var rowIndex = e.target.parentElement.rowIndex;
+    var rowIndex = $(this).parent().parent().parent().children().index($(this).parent().parent());
+    var colIndex = $(this).parent().parent().children().index($(this).parent());
+
+    markFlippableDisks(rowIndex, colIndex);
+
+    changeScore();
+    flipAllDirections();
 
     changePlayer();
     toggleHoverableSquares();
+
+    if ($(".isClickable").length === 0) {
+      if (currentPlayer === 1) {
+        currentPlayer = 2;
+      } else {
+        currentPlayer = 1;
+      }
+      toggleHoverableSquares();
+    }
   });
 }
 
@@ -218,7 +235,7 @@ function changeToPause() {
 }
 
 function changeToStart() {
-  $("#start-btn").text("Start Game");
+  $("#start-btn").text("Continue");
 }
 
 function changeDiskColor(newColor, playerClass) {
@@ -272,6 +289,7 @@ function finishedForm() {
   hideModal();
   startResumeGame();
   setboard();
+  showScoreTable();
 }
 
 function changePlayer() {
@@ -285,10 +303,22 @@ function changePlayer() {
 function setboard() {
   var i = gridSize / 2;
   var j = gridSize / 2;
-  table.rows[i].cells[j].firstChild.click();
-  table.rows[i].cells[j + 1].firstChild.click();
-  table.rows[i + 1].cells[j + 1].firstChild.click();
-  table.rows[i + 1].cells[j].firstChild.click();
+  $(table.rows[i].cells[j].firstChild.firstChild).addClass("disk player1Style").css("backgroundColor", diskColorP1);
+  $(table.rows[i].cells[j + 1].firstChild.firstChild).addClass("disk player1Style").css("backgroundColor", diskColorP2);
+  $(table.rows[i + 1].cells[j + 1].firstChild.firstChild).addClass("disk player2Style").css("backgroundColor", diskColorP1);
+  $(table.rows[i + 1].cells[j].firstChild.firstChild).addClass("disk player2Style").css("backgroundColor", diskColorP2);
+  toggleHoverableSquares();
+  // table.rows[i].cells[j + 1].firstChild.click();
+  // table.rows[i + 1].cells[j + 1].firstChild.click();
+  // table.rows[i + 1].cells[j].firstChild.click();
+}
+
+function hideScoreTable() {
+  $("#score-board").addClass("d-none")
+}
+
+function showScoreTable() {
+  $("#score-board").removeClass("d-none")
 }
 
 function setDefaults() {
@@ -316,9 +346,7 @@ function enableBoard() {
 }
 
 function toggleHoverableSquares() {
-  // $("#my-table td:has('.disk')").addClass("notHoverable");
-
-  // --------------------------------------------------------
+  $(".isClickable").removeClass("isClickable");
 
   for (let i = 1; i < table.rows.length - 1; i++) {
     for (let j = 1; j < table.rows[i].cells.length - 1; j++) {
@@ -329,8 +357,12 @@ function toggleHoverableSquares() {
 
       if (isSquareClickable(i, j)) {
         $(cell).removeClass("notHoverable");
+        $(cell).css("backgroundColor", getCurrentPlayerColor());
+        $(cell).addClass("isClickable");
+
       } else {
         $(cell).addClass("notHoverable");
+        $(cell).css("backgroundColor", "transparent");
       }
     }
   }
@@ -352,7 +384,6 @@ function isDirectionClickable(i, j, foundOP, op1, op2) {
   }
   // console.log(i,j,"samecolor",foundOP);
   return foundOP;
-
 }
 
 function flipDirection(i, j, op1, op2) {
@@ -366,7 +397,7 @@ function flipDirection(i, j, op1, op2) {
     return;
   }
   else if (getCurrentPlayerColor() !== getDiskColor(i, j)) {
-    flipDisk(i,j);
+    flipDisk(i, j);
     // console.log(i,j,"oppositeColor", getCurrentPlayerColor(), getDiskColor(i,j),true);
     flipDirection(i + (op1), j + (op2), op1, op2);
   }
@@ -401,10 +432,10 @@ function flipDisk(i, j) {
   let newColor = getCurrentPlayerColor();
   let cell = $($(table.rows[i].cells[j])[0]).find(".disk");
   cell.removeClass("player1Style player2Style");
-  cell.addClass("player"+currentPlayer+"Style");
+  cell.addClass("player" + currentPlayer + "Style");
   cell.css("backgroundColor", newColor);
-  
-  let currentPlayerScore = $("player"+currentPlayer+"score");
+
+  let currentPlayerScore = $("player" + currentPlayer + "score");
 
   let player1score = $("#player1score");
   let player2score = $("#player2score");
@@ -415,5 +446,70 @@ function flipDisk(i, j) {
     player1score.val(player1score.val() - 1);
     player2score.val(player2score.val() + 1);
   }
-  
+
 }
+
+function shouldFlipDirection(i, j, className, op1, op2) {
+  // console.log(i,j,foundOP,op1,op2);
+  if ($(table.rows[i].cells[j]).hasClass('edge')) {
+    // console.log(i,j,"edgeHit");
+    return "";
+  }
+  else if (!hasDiskChild(i, j)) {
+    // console.log(i,j,"nodisk");
+    return "";
+  }
+  else if (getCurrentPlayerColor() !== getDiskColor(i, j)) {
+    // console.log(i,j,"oppositeColor", getCurrentPlayerColor(), getDiskColor(i,j),true);
+    var newClass = shouldFlipDirection(i + (op1), j + (op2), "shouldFlip", op1, op2);
+    $(table.rows[i].cells[j]).addClass(newClass);
+    return newClass;
+  }
+  else {
+    return className;
+  }
+  // return className;
+  // console.log(i,j,"samecolor",foundOP);
+}
+
+function markFlippableDisks(i, j) {
+  shouldFlipDirection(i - 1, j, "", -1, 0);
+  shouldFlipDirection(i - 1, j + 1, "", -1, 1);
+  shouldFlipDirection(i, j + 1, "", 0, 1);
+  shouldFlipDirection(i + 1, j + 1, "", 1, 1);
+  shouldFlipDirection(i + 1, j, "", 1, 0);
+  shouldFlipDirection(i + 1, j - 1, "", 1, -1);
+  shouldFlipDirection(i, j - 1, "", 0, -1);
+  shouldFlipDirection(i - 1, j - 1, "", -1, -1);
+}
+
+function flipAllDirections() {
+  $(".shouldFlip .disk").css("backgroundColor", getCurrentPlayerColor());
+  $(".shouldFlip").removeClass("shouldFlip");
+}
+
+function changeScore() {
+  let p1ScoreHolder = $("#player1score")[0];
+  let p2ScoreHolder = $("#player2score")[0];
+  let p1Score = Number(p1ScoreHolder.innerHTML);
+  let p2Score = Number(p2ScoreHolder.innerHTML);
+
+  let scorechange = $(".shouldFlip").length;
+  if (currentPlayer === 1) {
+    p1ScoreHolder.innerHTML = p1Score + scorechange + 1;
+    p2ScoreHolder.innerHTML = p2Score - scorechange;
+  } else {
+    p2ScoreHolder.innerHTML = p2Score + scorechange + 1;
+    p1ScoreHolder.innerHTML = p1Score - scorechange;
+  }
+
+  let totalScore = Number(p1ScoreHolder.innerHTML) + Number(p2ScoreHolder.innerHTML);
+  if (totalScore === Math.pow(gridSize)) {
+    gameOver();
+  }
+}
+
+// function gameOver() {
+//   pauseGame();
+//   $('#game-over-modal').modal("show");
+// }

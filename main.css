@@ -7,8 +7,17 @@ body {
 }
 
 .main-navbar {
-    padding: 1.5rem !important;
+    padding-top: 2.5rem !important;
+    padding-right: 2.5rem !important;
+    padding-left: 2.5rem !important;
     margin-bottom: 7rem !important;
+}
+
+.main-navbar a .btn-main-menu {
+    font-size: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background-color .1s linear;
 }
 
 .main-navbar .start-btn {
@@ -30,6 +39,10 @@ body {
 }
 
 .main-navbar .reset-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.main-navbar .btn-main-menu:hover {
     background-color: #f8f9fa;
 }
 
@@ -124,3 +137,7 @@ td:not(.edge):hover {
 .notHoverable {
     pointer-events: none !important;
   }
+
+td:not(.notHoverable):not(.edge) {
+    opacity: 0.3 !important;
+}

@@ -16,14 +16,17 @@
     <!-- Navbar -->
     <nav class="main-navbar navbar navbar-expand-sm">
         <!-- Navbar-brand -->
-        <span id="logo-text"><img id="logo" src="assets/LogoMakr_6bnajQ.png" alt="logo" height="75"
-                width="75"></span>
+        <span id="logo-text"><img id="logo" src="assets/LogoMakr_6bnajQ.png" alt="logo" height="75" width="75"></span>
         <!-- /navbar end -->
 
         <!-- buttons -->
-        <button type="button" class="start-btn btn btn-transparent border rounded-pill ml-4"  onclick="startTimer()" id="start-btn">Start Game</button>
-        <button type="button" class="reset-btn btn btn-transparent border rounded-pill ml-4"  onclick="restartGame()" id="reset-btn">Restart
+        <button type="button" class="start-btn btn btn-transparent border rounded-pill ml-4" onclick="startTimer()"
+            id="start-btn">Pause Game</button>
+        <button type="button" class="reset-btn btn btn-transparent border rounded-pill ml-4" onclick="restartGame()"
+            id="reset-btn">Restart
             Game</button>
+        <a href="home.html"><button class="btn-main-menu btn btn-transparent border rounded-pill ml-4">Main Menu
+            </button></a>
         <!-- /buttons -->
 
         <!-- timer -->
@@ -45,7 +48,7 @@
         </div>
         <div class="col-12 col-md-4">
             <!-- UI -->
-            <table class="table mx-auto mt-5 mt-md-0" id="score-board">
+            <table class="table mx-auto mt-5 mt-md-0 d-none" id="score-board">
                 <thead>
                     <tr>
                         <th id="player1Name" class="playerNames" scope="col">Player 1</th>
@@ -167,6 +170,29 @@
     </div>
     <!-- /modal -->
 
+    <!-- end game modal -->
+
+    <div class="modal fade" id="game-over-modal" tabindex="-1" role="dialog" aria-labelledby="gameOverLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <h1>Game Over</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="reset-btn btn btn-transparent border rounded-pill ml-4"
+                                onclick="restartGame()" id="reset-btn">Restart
+                                Game</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /end game modal -->
 
 
 

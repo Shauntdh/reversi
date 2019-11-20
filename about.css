@@ -18,3 +18,7 @@ body {
 .about-game .col .boardgame {
     margin-left: 10rem;
 }
+
+.navbar {
+    background-color: white;
+}
