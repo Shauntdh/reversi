@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  // dynamicTable(4);
   showModal();
 
   $("select").change(function () {
@@ -158,12 +157,10 @@ function addClickListener() {
 
   isClickListenerAdded = true;
   $("td:not(.edge) > .fill-container").click(function (e) {
-    // console.log(e);
     var disk = e.target.firstChild;
 
     if ($(disk).hasClass("disk")) {
       e.stopPropagation();
-      // console.log("has disk");
       return;
     }
 
@@ -173,17 +170,14 @@ function addClickListener() {
       $(disk).css('background-color', diskColorP1);
       let playerscore = $("#player1score");
       playerscore.val(playerscore.val("playerscore + 1"));
-      // console.log(playerscore);
-      // $(disk).removeClass("player2Style");
+      
     } else {
       let playerscore = $("#player2score");
       playerscore.val(playerscore.val("playerscore + 1"));
       $(disk).addClass("player2Style");
       $(disk).css('background-color', diskColorP2);
-      // $(disk).removeClass("player1Style");
     }
 
-    // var rowIndex = e.target.parentElement.rowIndex;
     var rowIndex = $(this).parent().parent().parent().children().index($(this).parent().parent());
     var colIndex = $(this).parent().parent().children().index($(this).parent());
 
@@ -271,13 +265,10 @@ function updateGridColor(gridColorValue) {
 
 function updateDiskColorP1(diskColorValue) {
   diskColorP1 = diskColorP2 === diskColorValue ? "dark" + diskColorValue : diskColorValue;
-  // $('.player1Style').css('background-color', diskColorP1);
 }
 
 function updateDiskColorP2(diskColorValue) {
   diskColorP2 = diskColorP1 === diskColorValue ? "dark" + diskColorValue : diskColorValue;
-  // $('.player2Style').css('background-color', diskColorP2);
-
 }
 
 function finishedForm() {
@@ -308,9 +299,6 @@ function setboard() {
   $(table.rows[i + 1].cells[j + 1].firstChild.firstChild).addClass("disk player2Style").css("backgroundColor", diskColorP1);
   $(table.rows[i + 1].cells[j].firstChild.firstChild).addClass("disk player2Style").css("backgroundColor", diskColorP2);
   toggleHoverableSquares();
-  // table.rows[i].cells[j + 1].firstChild.click();
-  // table.rows[i + 1].cells[j + 1].firstChild.click();
-  // table.rows[i + 1].cells[j].firstChild.click();
 }
 
 function hideScoreTable() {
@@ -351,9 +339,6 @@ function toggleHoverableSquares() {
   for (let i = 1; i < table.rows.length - 1; i++) {
     for (let j = 1; j < table.rows[i].cells.length - 1; j++) {
       let cell = $(table.rows[i].cells[j]);
-      // if ($(cell).hasClass("edge")){
-      //   continue;
-      // }
 
       if (isSquareClickable(i, j)) {
         $(cell).removeClass("notHoverable");
@@ -369,39 +354,29 @@ function toggleHoverableSquares() {
 }
 
 function isDirectionClickable(i, j, foundOP, op1, op2) {
-  // console.log(i,j,foundOP,op1,op2);
   if ($(table.rows[i].cells[j]).hasClass('edge')) {
-    // console.log(i,j,"edgeHit");
     return false;
   }
   else if (!hasDiskChild(i, j)) {
-    // console.log(i,j,"nodisk");
     return false;
   }
   else if (getCurrentPlayerColor() !== getDiskColor(i, j)) {
-    // console.log(i,j,"oppositeColor", getCurrentPlayerColor(), getDiskColor(i,j),true);
     return isDirectionClickable(i + (op1), j + (op2), true, op1, op2);
   }
-  // console.log(i,j,"samecolor",foundOP);
   return foundOP;
 }
 
 function flipDirection(i, j, op1, op2) {
-  // console.log(i,j,foundOP,op1,op2);
   if ($(table.rows[i].cells[j]).hasClass('edge')) {
-    // console.log(i,j,"edgeHit");
     return;
   }
   else if (!hasDiskChild(i, j)) {
-    // console.log(i,j,"nodisk");
     return;
   }
   else if (getCurrentPlayerColor() !== getDiskColor(i, j)) {
     flipDisk(i, j);
-    // console.log(i,j,"oppositeColor", getCurrentPlayerColor(), getDiskColor(i,j),true);
     flipDirection(i + (op1), j + (op2), op1, op2);
   }
-  // console.log(i,j,"samecolor",foundOP);
 
 }
 
@@ -450,17 +425,13 @@ function flipDisk(i, j) {
 }
 
 function shouldFlipDirection(i, j, className, op1, op2) {
-  // console.log(i,j,foundOP,op1,op2);
   if ($(table.rows[i].cells[j]).hasClass('edge')) {
-    // console.log(i,j,"edgeHit");
     return "";
   }
   else if (!hasDiskChild(i, j)) {
-    // console.log(i,j,"nodisk");
     return "";
   }
   else if (getCurrentPlayerColor() !== getDiskColor(i, j)) {
-    // console.log(i,j,"oppositeColor", getCurrentPlayerColor(), getDiskColor(i,j),true);
     var newClass = shouldFlipDirection(i + (op1), j + (op2), "shouldFlip", op1, op2);
     $(table.rows[i].cells[j]).addClass(newClass);
     return newClass;
@@ -468,8 +439,6 @@ function shouldFlipDirection(i, j, className, op1, op2) {
   else {
     return className;
   }
-  // return className;
-  // console.log(i,j,"samecolor",foundOP);
 }
 
 function markFlippableDisks(i, j) {
@@ -504,12 +473,45 @@ function changeScore() {
   }
 
   let totalScore = Number(p1ScoreHolder.innerHTML) + Number(p2ScoreHolder.innerHTML);
-  if (totalScore === Math.pow(gridSize)) {
+  if (totalScore === Math.pow(gridSize, 2)) {
     gameOver();
   }
 }
 
-// function gameOver() {
-//   pauseGame();
-//   $('#game-over-modal').modal("show");
-// }
+function gameOver() {
+  clearInterval(timer);
+  $('#game-over-modal').modal({
+    show: true,
+    keyboard: false,
+    backdrop: 'static'
+  });
+  displayWinner();
+}
+
+function displayWinner() {
+  p1Score = Number($("#player1score")[0].innerHTML);
+  p2Score = Number($("#player2score")[0].innerHTML);
+  p1TotalWinsHolder = $("#p1-total")[0];
+  p2TotalWinsHolder = $("#p2-total")[0];
+  p1TotalWins = Number(p1TotalWinsHolder.innerHTML);
+  p2TotalWins = Number(p2TotalWinsHolder.innerHTML);
+
+  if (p1Score > p2Score) {
+    $(".winning-player")[0].innerHTML = "Player 1 wins!"
+    p1TotalWinsHolder.innerHTML = p1TotalWins + 1;
+  } else if (p1Score < p2Score) {
+    $(".winning-player")[0].innerHTML = "Player 2 wins!" 
+    p2TotalWinsHolder.innerHTML = p2TotalWins + 1;
+  } else {
+    $(".winning-player")[0].innerHTML = "It's a draw!"    
+  }
+}
+
+function clickRandomSquare() {
+  var randomNum = getRandomInt($(".isClickable").length);
+  $($(".isClickable")[randomNum].firstChild).click();
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}

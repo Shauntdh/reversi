@@ -178,11 +178,28 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
-                        <h1>Game Over</h1>
+                        <h1 class="winning-player mx-auto m-5">player</h1>
                     </div>
                     <div class="row">
+                        <table class="table wins-loses mx-auto mb-5 bt-5">
+                            <thead>
+                                <tr>
+                                    <th scope="col" >Player 1 Wins</th>
+                                    <th scope="col" >Player 2 Wins</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="edge" id="p1-total">0</td>
+                                    <td class="edge" id="p2-total">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row mb-3 mt-4">
+                        <div class="col"></div>
                         <div class="col">
-                            <button type="button" class="reset-btn btn btn-transparent border rounded-pill ml-4"
+                            <button type="button" class="reset-btn btn btn-transparent border rounded-pill p-3"
                                 onclick="restartGame()" id="reset-btn">Restart
                                 Game</button>
                         </div>

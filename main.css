@@ -141,3 +141,14 @@ td:not(.edge):hover {
 td:not(.notHoverable):not(.edge) {
     opacity: 0.3 !important;
 }
+
+.wins-loses {
+    border: none !important;
+    width: 65% !important;
+}
+
+.wins-loses thead tr th {
+    padding-right: 2rem;
+    padding-left: 2rem;
+    font-weight: 400 !important;
+}
