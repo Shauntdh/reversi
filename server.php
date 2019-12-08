@@ -51,7 +51,7 @@ if (isset($_POST['reg_user'])) {
   	mysqli_query($db, $query);
     $_SESSION['firstname'] = $firstname;
     $_SESSION['success'] = "You are now logged in";
-    // $_SESSION['isSuccess'] = true;
+    $_SESSION['isSuccess'] = true;
     $_SESSION['loggedIn'] = true;
   	// header('location: home_loggedin.php');
     header('location: home.php');
@@ -81,27 +81,21 @@ if (isset($_POST['login_user'])) {
         if (mysqli_num_rows($results) == 1) {
           $_SESSION['email'] = $email;
           $_SESSION['success'] = "You are now logged in";
-          // $_SESSION['isSuccess'] = true;
+          $_SESSION['isSuccess'] = true;
           $_SESSION['firstname'] = $row['firstname'];
           $_SESSION['loggedIn'] = true;
           header('location: home.php');
           exit();
 
         }else { // No records found
-          // $_SESSION['isSuccess'] = false;
-          // $_SESSION['message'] = 'Incorrect email or password';
+          $_SESSION['isSuccess'] = true;
+          $_SESSION['message'] = 'Incorrect email or password';
           array_push($errors, "Wrong email/password combination");
-          // header('location: home.php');
-          // exit();
-          // exit(json_encode($response));
+          header('location: home.php');
+          exit();
         }
-       } 
-      //  else { // $errors is not empty
-      //   // $_SESSION['isSuccess'] = false;
-      //   $_SESSION['message'] = 'Empty email or password';
-        
-      //   // exit(json_encode($response));
-      // }
+    } 
+    $_SESSION['isSuccess'] = false; // count($errors) != 0
   }
 
 

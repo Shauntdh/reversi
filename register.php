@@ -1,17 +1,3 @@
-<?php include('server.php'); ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="home.css">
-
-    <title>REVERSI</title>
-</head>
-
-<body>
 
     <!-- Sign-up Modal -->
     <div class="sign-up-modal modal fade" id="sign-up-modal" tabindex="-1" role="dialog"
@@ -28,10 +14,9 @@
 
                         <!-- form start -->
 
-                            <form method="post" action="register.php" class="mx-auto mb-5">
-                                <?php include('errors.php'); ?>
+                            <form method="post" action="server.php" class="mx-auto mb-5">
                                 <div class="email-form input-group mb-3">
-                                    <input type="email" name="email" value="<?php echo $email; ?>" class="form-control rounded-pill" id="sign-up-email"
+                                    <input type="email" name="email" class="form-control rounded-pill" id="sign-up-email"
                                         aria-describedby="emailHelp" placeholder="Email">
                                 </div>
                                 <div class="password-form input-group mb-3">
@@ -40,15 +25,15 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col input-group">
-                                        <input type="text" name="firstname" value="<?php echo $firstname; ?>" class="form-control rounded-pill" placeholder="First name">
+                                        <input type="text" name="firstname" class="form-control rounded-pill" placeholder="First name">
                                     </div>
                                     <div class="col input-group">
-                                        <input type="text" name="lastname" value="<?php echo $lastname; ?>" class="form-control rounded-pill" placeholder="Last name">
+                                        <input type="text" name="lastname" class="form-control rounded-pill" placeholder="Last name">
                                     </div>
                                 </div>
                                 <div class="form-row mt-3">
                                     <div class="col input-group">
-                                        <input type="text" name="age" value="<?php echo $age; ?>" class="form-control rounded-pill" placeholder="Age">
+                                        <input type="text" name="age"  class="form-control rounded-pill" placeholder="Age">
                                     </div>
                                     <div class="col">
                                         <div class="form-check form-check-inline ml-4 mt-1">
@@ -86,25 +71,5 @@
             </div>
         </div>
     </div>
-
+</div>
     <!-- Sign-up Modal -->
-
-
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <!-- custome JavaScript for home -->
-    <script src="home.js"></script>
-</body>
-
-</html>

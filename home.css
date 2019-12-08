@@ -71,3 +71,7 @@ a {
     height: 100px;
     width: 100px;
 }
+
+#welcome_text {
+    font-size: x-large;
+}

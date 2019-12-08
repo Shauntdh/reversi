@@ -2,7 +2,7 @@
 
 
 <?php
-session_start();
+// session_start();
     if (!isset($_SESSION['email'])) {
         $_SESSION['msg'] = "You must log in first";
         header('location: home.php');
@@ -37,7 +37,7 @@ session_start();
         <button type="button" class="reset-btn btn btn-transparent border rounded-pill ml-4" onclick="restartGame()"
             id="reset-btn">Restart
             Game</button>
-        <a href="home.html"><button class="btn-main-menu btn btn-transparent border rounded-pill ml-4">Main Menu
+        <a href="home.php"><button class="btn-main-menu btn btn-transparent border rounded-pill ml-4">Main Menu
             </button></a>
         <!-- /buttons -->
 
