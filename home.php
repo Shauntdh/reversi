@@ -1,11 +1,5 @@
 <?php 
   session_start();
-
-//   if (isset($_GET['logout'])) {
-//   	session_destroy();
-//   	unset($_SESSION['email']);
-//   	header("location: home.php");
-//   }
     if (!isset($_SESSION['loggedIn'])) {
         $_SESSION['loggedIn'] = false;
     }
@@ -71,8 +65,7 @@
                 </a>            
             </div>
             <div class="col-6 my-auto">
-                <a href="about.html"><button class="btn-about-game btn btn-transparent rounded-pill">About
-                        Game</button></a>
+                <a href="about.html"><button class="btn-about-game btn btn-transparent rounded-pill">About Game</button></a>
             </div>
         </div>
     </div>
