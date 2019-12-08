@@ -1,13 +1,12 @@
-<?php include('server.php'); ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="home.css">
     
     <title>REVERSI</title>
 </head>
@@ -30,8 +29,7 @@
                         
                         <div class="col">
                             <form id="submitForm" class="mx-auto mb-5" method="post" action="server.php">
-                                <?php include('errors.php'); ?>
-                                <div id="errorMessages" class="d-none">ERROR</div>
+                                <!-- <div id="errorMessages" class="d-none">ERROR</div> -->
                                 <div class="mb-4 email-form input-group">
                                     <input type="email" name="email" required class="form-control rounded-pill" id="login-email"
                                     aria-describedby="emailHelp" placeholder="Email">
@@ -67,15 +65,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <!-- jQuery library -->
-<link rel="stylesheet" type="text/css" href="home.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <!-- custome JavaScript for home -->
+<!-- custome JavaScript for home -->
+
 <!-- </body>
 
 </html>

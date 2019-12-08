@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 // initializing variables
 $email      = "";
@@ -55,7 +55,7 @@ if (isset($_POST['reg_user'])) {
     $_SESSION['loggedIn'] = true;
   	// header('location: home_loggedin.php');
     header('location: home.php');
-    // exit();
+    exit();
   }
 }
 
@@ -82,9 +82,10 @@ if (isset($_POST['login_user'])) {
           $_SESSION['email'] = $email;
           $_SESSION['success'] = "You are now logged in";
           // $_SESSION['isSuccess'] = true;
+          $_SESSION['firstname'] = $row['firstname'];
           $_SESSION['loggedIn'] = true;
           header('location: home.php');
-          // exit();
+          exit();
 
         }else { // No records found
           // $_SESSION['isSuccess'] = false;
