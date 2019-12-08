@@ -1,3 +1,15 @@
+<?php include('server.php'); ?>
+
+
+<?php
+session_start();
+    if (!isset($_SESSION['email'])) {
+        $_SESSION['msg'] = "You must log in first";
+        header('location: home.php');
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +63,9 @@
             <table class="table mx-auto mt-5 mt-md-0 d-none" id="score-board">
                 <thead>
                     <tr>
-                        <th id="player1Name" class="playerNames" scope="col">Player 1</th>
+                        <?php if (isset($_SESSION['firstname'])) : ?>
+                            <th id="player1Name" class="playerNames" scope="col"><?php echo $_SESSION['firstname']; ?></th>
+                        <?php endif ?>
                         <th id="player2Name" class="playerNames" scope="col">Player 2</th>
                     </tr>
                 </thead>
