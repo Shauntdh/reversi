@@ -14,7 +14,7 @@
 
                     <!-- form start -->
 
-                        <form method="post" action="server.php" class="mx-auto mb-5">
+                        <form method="post" action="server.php" class="mx-auto mb-5" enctype="multipart/form-data">
                             <div class="email-form input-group mb-3">
                                 <input type="email" name="email" class="form-control rounded-pill" id="sign-up-email"
                                     aria-describedby="emailHelp" placeholder="Email">
@@ -37,15 +37,15 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-check form-check-inline ml-4 mt-1">
-                                        <input class="form-check-input" type="radio" name="gender-radio"
-                                            id="male-radio" value="option1">
+                                        <input class="form-check-input" type="radio" name="gender"
+                                            id="male-radio" value="M">
                                         <label class="form-check-label" for="male-radio">
                                             Male
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender-radio"
-                                            id="female-radio" value="option2">
+                                        <input class="form-check-input" type="radio" name="gender"
+                                            id="female-radio" value="F">
                                         <label class="form-check-label" for="female-radio">
                                             Female
                                         </label>
@@ -53,7 +53,14 @@
                                 </div>
                             </div>
                             <div class="form-row mt-3">
-                            
+                                <div class="col input-group">
+                                    <input type="text" name="location" class="form-control rounded-pill" placeholder="Location">
+                                </div>
+                            </div>
+                            <div class="form-row mt-3">
+                                <div class="col input-group">
+                                    <input type="file" name="avatar" id="avatar">
+                                </div>
                             </div>
                             
                         </div>

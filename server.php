@@ -6,6 +6,10 @@ $email      = "";
 $firstname  = "";
 $lastname   = "";
 $age        = "";
+$gender     = "";
+$location   = "";
+$avatar     = "";
+
 $errors = array(); 
 
 // connect to the database
@@ -20,6 +24,9 @@ if (isset($_POST['reg_user'])) {
   $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
   $lastname = mysqli_real_escape_string($db, $_POST['lastname']);
   $age = mysqli_real_escape_string($db, $_POST['age']);
+  $gender = mysqli_real_escape_string($db, $_POST['gender']);
+  $location = mysqli_real_escape_string($db, $_POST['location']);
+  
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -28,6 +35,8 @@ if (isset($_POST['reg_user'])) {
   if (empty($firstname)) { array_push($errors, "First name is required"); }
   if (empty($lastname)) { array_push($errors, "Last name is required"); }
   if (empty($age)) { array_push($errors, "Age is required"); }
+  if (empty($gender)) { array_push($errors, "Gender is required"); }
+  if (empty($location)) { array_push($errors, "Location is required"); }
 
 
   // first check the database to make sure 
@@ -46,8 +55,8 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password = md5($password);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO users (email, password, firstname, lastname, age) 
-  			  VALUES('$email', '$password', '$firstname', '$lastname', '$age')";
+  	$query = "INSERT INTO users (email, password, firstname, lastname, age, gender, location) 
+  			  VALUES('$email', '$password', '$firstname', '$lastname', '$age', '$gender', '$location')";
   	mysqli_query($db, $query);
     $_SESSION['firstname'] = $firstname;
     $_SESSION['success'] = "You are now logged in";
