@@ -10,3 +10,4 @@ function closeModal() {
     $('#login-modal').modal('hide');
     $('#sign-up-modal').modal('hide');
 }
+

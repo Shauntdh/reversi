@@ -29,7 +29,7 @@
             <ul class="nav-list navbar-nav">
             <?php if ($_SESSION["loggedIn"]) { ?>
                 <li class="m-1 pr-4">
-                    <span id="welcome_text">Hello <?php echo $_SESSION['firstname'] ?>!</span>
+                    <span id="welcome_text">Hello <?php echo ucwords($_SESSION['firstname']) ?>!</span>
                 </li>
                 <li>
                     <a href="logout.php">

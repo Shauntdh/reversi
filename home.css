@@ -75,3 +75,7 @@ a {
 #welcome_text {
     font-size: x-large;
 }
+
+#custome-file-label::after {
+    border-radius: 0 1.05rem 1.05rem 0 !important;
+}

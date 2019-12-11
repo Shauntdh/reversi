@@ -493,15 +493,15 @@ function displayWinner() {
   p2Score = Number($("#player2score")[0].innerHTML);
   p1TotalWinsHolder = $("#p1-total")[0];
   p2TotalWinsHolder = $("#p2-total")[0];
-  p1TotalWins = Number(p1TotalWinsHolder.innerHTML);
-  p2TotalWins = Number(p2TotalWinsHolder.innerHTML);
+  // p1TotalWins = Number(p1TotalWinsHolder.innerHTML);
+  // p2TotalWins = Number(p2TotalWinsHolder.innerHTML);
 
   if (p1Score > p2Score) {
     $(".winning-player")[0].innerHTML = "Player 1 wins!"
-    p1TotalWinsHolder.innerHTML = p1TotalWins + 1;
+    // p1TotalWinsHolder.innerHTML = p1TotalWins + 1;
   } else if (p1Score < p2Score) {
     $(".winning-player")[0].innerHTML = "Player 2 wins!" 
-    p2TotalWinsHolder.innerHTML = p2TotalWins + 1;
+    // p2TotalWinsHolder.innerHTML = p2TotalWins + 1;
   } else {
     $(".winning-player")[0].innerHTML = "It's a draw!"    
   }

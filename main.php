@@ -1,15 +1,6 @@
 <?php include('server.php'); ?>
 
 
-<?php
-// session_start();
-    if (!isset($_SESSION['email'])) {
-        $_SESSION['msg'] = "You must log in first";
-        header('location: home.php');
-        // exit();
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +34,7 @@
 
         <!-- timer -->
         <ul class="nav navbar-nav ml-auto">
-            <li><span id="clock" class="mr-1">00:00</span></li>
+            <li><span id="clock" name="clock" class="mr-1">00:00</span></li>
         </ul>
 
         <!-- /timer -->
@@ -71,8 +62,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td id="player1score" class="edge">2</td>
-                        <td id="player2score" class="edge">2</td>
+                        <td id="player1score" name="player1score" class="edge">2</td>
+                        <td id="player2score" name="player2score" class="edge">2</td>
                     </tr>
                 </tbody>
             </table>
@@ -98,7 +89,7 @@
                                     <option>-- Select --</option>
                                     <!-- Remove this -->
                                     <option selected>Player vs. Player</option>
-                                    <option>Player vs. Computer</option>
+                                    <option disabled>Player vs. Computer</option>
                                 </select>
                             </div>
                         </div>
@@ -183,7 +174,6 @@
         </div>
     </div>
     <!-- /modal -->
-
     <!-- end game modal -->
 
     <div class="modal fade" id="game-over-modal" tabindex="-1" role="dialog" aria-labelledby="gameOverLabel"
@@ -194,28 +184,12 @@
                     <div class="row">
                         <h1 class="winning-player mx-auto m-5">player</h1>
                     </div>
-                    <div class="row">
-                        <table class="table wins-loses mx-auto mb-5 bt-5">
-                            <thead>
-                                <tr>
-                                    <th scope="col" >Player 1 Wins</th>
-                                    <th scope="col" >Player 2 Wins</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="edge" id="p1-total">0</td>
-                                    <td class="edge" id="p2-total">0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                     <div class="row mb-3 mt-4">
-                        <div class="col"></div>
                         <div class="col">
-                            <button type="button" class="reset-btn btn btn-transparent border rounded-pill p-3"
-                                onclick="restartGame()" id="reset-btn">Restart
-                                Game</button>
+                            <a href="scoreboard.php" class="float-right"><button type="submit" name="scoreboard" class="btn btn-transparent border rounded-pill p-3">Scoreboard</button></a>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="reset-btn btn btn-transparent border rounded-pill p-3" onclick="restartGame()" id="reset-btn">Restart Game</button>
                         </div>
                     </div>
                 </div>

@@ -57,24 +57,26 @@
                                     <input type="text" name="location" class="form-control rounded-pill" placeholder="Location">
                                 </div>
                             </div>
-                            <div class="form-row mt-3">
-                                <div class="col input-group">
-                                    <input type="file" name="avatar" id="avatar">
+                            <div class="form-row mt-3 p-1">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile02">
+                                        <label id="custome-file-label" class="custom-file-label rounded-pill" for="inputGroupFile02">Choose photo</label>
+                                    </div>
                                 </div>
                             </div>
-                            
-                        </div>
-                        <div class="row mb-3 modal-btn">
-                            <div class="col-6">
-                                <button type="button" class="btn btn-secondary rounded-pill float-right pl-4 pr-4"
-                                data-dismiss="modal">Close</button>
+                            <div class="row mb-3 modal-btn">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-secondary rounded-pill float-right pl-4 pr-4"
+                                    data-dismiss="modal">Close</button>
+                                </div>
+                                <div class="col-6" class input-group>
+                                    <button type="submit" name="reg_user" class="btn btn-primary rounded-pill pl-4 pr-4">Register</button>
+                                </div>
                             </div>
-                            <div class="col-6" class input-group>
-                                <button type="submit" name="reg_user" class="btn btn-primary rounded-pill pl-4 pr-4">Register</button>
-                            </div>
-                        </div>
-                    </form>
-
+                        </form>
+                        
+                    </div>
                 <!-- form end -->
                 </div>
             </div>

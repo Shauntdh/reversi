@@ -8,7 +8,9 @@ $lastname   = "";
 $age        = "";
 $gender     = "";
 $location   = "";
-$avatar     = "";
+// $avatar     = "";
+$score      = "";
+$time       = "";
 
 $errors = array(); 
 
@@ -107,5 +109,12 @@ if (isset($_POST['login_user'])) {
     $_SESSION['isSuccess'] = false; // count($errors) != 0
   }
 
-
+  if (isset($_POST['scoreboard'])) {
+    
+    $player1 = $firstname . $lastname;
+    $player2 = 'Player 2';
+    $score1 = mysqli_real_escape_string($db, $_POST['player1score']);
+    $score2 = mysqli_real_escape_string($db, $_POST['player2score']);
+    $duration = mysqli_real_escape_string($db, $_POST['clock']);
+  }
 ?>
